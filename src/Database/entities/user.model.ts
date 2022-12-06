@@ -9,8 +9,9 @@ export class User {
 
   @Column({
     type: 'json',
+    nullable: true,
   })
-  personalData: any;
+  personalData?: any;
 
   @Column({
     type: 'varchar',
@@ -25,5 +26,16 @@ export class User {
   @Column({
     type: 'varchar',
   })
-  calendarId: string;
+  email: string;
+
+  @Column({
+    type: 'bool',
+  })
+  isGoogleAuthenticated: boolean;
+
+  @Column({
+    type: 'varchar',
+    nullable: true,
+  })
+  calendarId?: string;
 }
