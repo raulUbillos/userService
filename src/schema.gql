@@ -1,0 +1,49 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Mutation {
+  giveRoleToUser(permissions: RoleInput!): RoleOutput!
+  register(user: UserInput!): UserOutput!
+  removeRoleFromUser(permissions: RoleInput!): RoleOutput!
+}
+
+input PersonalDataInput {
+  phoneNumber: [String!]!
+}
+
+type PersonalDataOutput {
+  phoneNumber: [String!]
+}
+
+type Query {
+  role(name: String!): RoleOutput!
+  user(id: String!): UserOutput!
+  userByUsername(username: String!): UserOutput!
+}
+
+input RoleInput {
+  roleName: String!
+  userEmail: String!
+}
+
+type RoleOutput {
+  permissions: [String!]
+  username: String!
+}
+
+input UserInput {
+  email: String!
+  isGoogleAuthenticated: Boolean!
+  password: String!
+  personalData: PersonalDataInput!
+  username: String!
+}
+
+type UserOutput {
+  email: String!
+  password: String!
+  personalData: PersonalDataOutput!
+  token: String!
+  username: String!
+}
