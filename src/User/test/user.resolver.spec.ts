@@ -2,6 +2,7 @@ import { Test } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { validate } from 'class-validator';
 import { User } from 'Database/entities/user.model';
+import { GraphQLError } from 'graphql';
 import UserInput from 'User/types/UserInput.model';
 import { UserResolver } from '../user.resolver';
 import { UserService } from '../user.service';
@@ -43,10 +44,20 @@ describe('UserResolver', () => {
   afterEach(() => jest.clearAllMocks());
 
   describe('register', () => {
-    it('register an user', async () => {
+    it('call register user on userService', async () => {
       const spyInstance = jest.spyOn(userService, 'registerUser');
-
       userResolver.register(MOCK_USER);
+
+      expect(spyInstance).toHaveBeenCalled();
+      expect(spyInstance).not.toThrowError();
+    });
+  });
+  describe('user', () => {
+    it('calls user by id on userService', async () => {
+      const spyInstance = jest.spyOn(userService, 'userById');
+      const ID = '';
+
+      userResolver.user(ID);
 
       expect(spyInstance).toHaveBeenCalled();
     });

@@ -1,4 +1,5 @@
 import UserInput from 'User/types/UserInput.model';
+import UserOutput from 'User/types/UserOutput.model';
 import Encription from 'Utils/encription';
 
 const MockUserService = {
@@ -9,6 +10,9 @@ const MockUserService = {
       personalData: user.personalData,
       username: user.username,
     };
+  }),
+  userById: jest.fn(async (id: string): Promise<UserOutput> => {
+    return {};
   }),
 };
 
