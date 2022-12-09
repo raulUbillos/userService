@@ -1,5 +1,3 @@
-import { APP_FILTER } from '@nestjs/core';
-import { UserInputErrorFilter } from './ExceptionFilters/exception.filter';
 import { RoleModule } from './Role/role.module';
 import { UserModule } from './User/user.module';
 import { DatabaseModule } from './Database/database.module';
@@ -8,7 +6,6 @@ import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
-import { GraphQLError, GraphQLFormattedError } from 'graphql';
 
 @Module({
   imports: [
@@ -25,11 +22,6 @@ import { GraphQLError, GraphQLFormattedError } from 'graphql';
     }),
   ],
   controllers: [],
-  providers: [
-    {
-      provide: APP_FILTER,
-      useClass: UserInputErrorFilter,
-    },
-  ],
+  providers: [],
 })
 export class AppModule {}

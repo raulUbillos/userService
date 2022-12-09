@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import UserInput from './types/UserInput.model';
-import Encription from 'src/utils/encription';
+import Encription from 'Utils/encription';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/Database/entities/user.model';
+import { User } from 'Database/entities/user.model';
 import { Repository } from 'typeorm';
 import { v4 } from 'uuid';
 import UserOutput from './types/UserOutput.model';

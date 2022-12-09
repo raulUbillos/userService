@@ -10,7 +10,14 @@
     "target": "es2017",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": "./src",
+    "paths": {
+      "@Utils/*": ["src/utils/*"],
+      "@Database/*": ["src/Database/*"],
+      "@ExceptionFilters/*": ["src/ExceptionFilters/*"],
+      "@Role/*": ["src/Role/*"],
+      "@User/*": ["src/User/*"]
+    },
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,

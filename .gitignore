@@ -5,6 +5,7 @@
 
 #credentials
 .env
+.env.test
 
 # Logs
 logs
