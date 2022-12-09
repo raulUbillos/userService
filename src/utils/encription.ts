@@ -1,4 +1,4 @@
-import { hashSync, compare } from 'bcrypt';
+import { hashSync, compareSync } from 'bcrypt';
 
 export default class Encription {
   static encrypt(textToEncrypt: string) {
@@ -6,6 +6,6 @@ export default class Encription {
   }
 
   static compare(encripted: string, originalText: string) {
-    return compare(originalText, encripted);
+    return compareSync(originalText, encripted);
   }
 }

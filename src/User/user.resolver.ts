@@ -1,11 +1,12 @@
 import { UseFilters } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { UserInputErrorFilter } from 'src/ExceptionFilters/exception.filter';
+import { UserInputErrorFilter } from 'ExceptionFilters/exception.filter';
 import UserInput from './types/UserInput.model';
 import UserOutput from './types/UserOutput.model';
 import { UserService } from './user.service';
 
 @Resolver(() => UserOutput)
+@UseFilters(UserInputErrorFilter)
 export class UserResolver {
   constructor(private userService: UserService) {}
 
@@ -16,12 +17,7 @@ export class UserResolver {
 
   @Mutation(() => UserOutput)
   async register(@Args('user') user: UserInput): Promise<UserOutput> {
-    try {
-      return await this.userService.registerUser(user);
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
+    return await this.userService.registerUser(user);
   }
 
   @Query(() => UserOutput)

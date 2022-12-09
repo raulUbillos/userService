@@ -47,7 +47,7 @@
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
-    "@nestjs/testing": "^9.0.0",
+    "@nestjs/testing": "^9.2.1",
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",
     "@types/jest": "28.1.8",
@@ -84,6 +84,13 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "^Utils/(.*)": "<rootDir>/utils/$1",
+      "^Database/(.*)$": "<rootDir>/Database/$1",
+      "^ExceptionFilters/(.*)": "<rootDir>/ExceptionFilters/$1",
+      "^Role/(.*)": "<rootDir>/Role/$1",
+      "^User/(.*)": "<rootDir>/User/$1"
+    }
   }
 }

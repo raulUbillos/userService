@@ -5,5 +5,12 @@
   "testRegex": ".e2e-spec.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "^@/(.*)$": "<rootDir>/../src/$1",
+    "^@Database/(.*)$": "<rootDir>/../src/Database/$1",
+    "^@ExceptionFilters/(.*)$": "<rootDir>/../src/ExceptionFilters/$1",
+    "^@Role/(.*)$": "<rootDir>/../src/Role/$1",
+    "^@User/(.*)$": "<rootDir>/../src/User/$1"
   }
 }
