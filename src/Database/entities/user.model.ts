@@ -15,6 +15,7 @@ export class User {
 
   @Column({
     type: 'varchar',
+    unique: true,
   })
   username: string;
 
@@ -25,6 +26,7 @@ export class User {
 
   @Column({
     type: 'varchar',
+    unique: true,
   })
   email: string;
 

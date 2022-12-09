@@ -5,7 +5,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'Database/entities/user.model';
 import { Repository } from 'typeorm';
 import { v4 } from 'uuid';
-import UserOutput from './types/UserOutput.model';
+import UserOutput from 'User/types/UserOutput.model';
+import { GraphQLError } from 'graphql';
 
 @Injectable()
 export class UserService {
@@ -31,6 +32,23 @@ export class UserService {
       password: userToCreate.password,
       personalData: userToCreate.personalData,
       username: userToCreate.username,
+    };
+  }
+
+  async userById(id: string): Promise<UserOutput> {
+    const user = await this.usersRepository.findBy({
+      id,
+    });
+
+    if (user.length === 0) {
+      throw new GraphQLError('USER_NOT_FOUND');
+    }
+
+    return {
+      email: user[0].email,
+      password: user[0].password,
+      personalData: user[0].personalData,
+      username: user[0].username,
     };
   }
 }
