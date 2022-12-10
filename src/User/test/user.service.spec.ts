@@ -33,7 +33,7 @@ describe('UserService', () => {
     userRepository = await module.get(getRepositoryToken(User));
   });
 
-  afterEach(() => jest.clearAllMocks());
+  afterEach(() => jest.restoreAllMocks());
 
   describe('registerUser', () => {
     it('add an user to the database', async () => {
@@ -46,6 +46,19 @@ describe('UserService', () => {
   });
 
   describe('userById', () => {
+    it('check that, if not user found, it threw the USER_NOT_FOUND error', async () => {
+      const spyInstance = jest.spyOn(userRepository, 'findBy');
+      MockUserRepository.findBy.mockImplementationOnce(async (where) => {
+        return [];
+      });
+      const ID = '';
+      const userById = userService.userById(ID);
+
+      await expect(userById).rejects.toThrow(
+        new GraphQLError('USER_NOT_FOUND'),
+      );
+      expect(spyInstance).toHaveBeenCalled();
+    });
     it('search for the user on the DB', async () => {
       const spyInstance = jest.spyOn(userRepository, 'findBy');
       const ID = '';
@@ -53,15 +66,25 @@ describe('UserService', () => {
       expect(spyInstance).toHaveBeenCalled();
       await expect(userById).resolves.not.toBeFalsy();
     });
+  });
+
+  describe('userByUsername', () => {
+    it('search for the user on the DB', async () => {
+      const spyInstance = jest.spyOn(userRepository, 'findBy');
+      const USERNAME = '';
+      const userByUsername = userService.userByUsername(USERNAME);
+      expect(spyInstance).toHaveBeenCalled();
+      await expect(userByUsername).resolves.not.toBeFalsy();
+    });
     it('check that, if not user found, it threw the USER_NOT_FOUND error', async () => {
       const spyInstance = jest.spyOn(userRepository, 'findBy');
-      MockUserRepository.findBy.mockImplementation(async (where) => {
+      MockUserRepository.findBy.mockImplementationOnce(async (where) => {
         return [];
       });
-      const ID = '';
-      const userById = userService.userById(ID);
+      const USERNAME = '';
+      const userByUsername = userService.userByUsername(USERNAME);
 
-      await expect(userById).rejects.toThrow(
+      await expect(userByUsername).rejects.toThrow(
         new GraphQLError('USER_NOT_FOUND'),
       );
       expect(spyInstance).toHaveBeenCalled();

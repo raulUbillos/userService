@@ -62,4 +62,15 @@ describe('UserResolver', () => {
       expect(spyInstance).toHaveBeenCalled();
     });
   });
+
+  describe('userByUsername', () => {
+    it('calls userByUsername on userService', async () => {
+      const spyInstance = jest.spyOn(userService, 'userByUsername');
+      const USERNAME = '';
+
+      userResolver.userByUsername(USERNAME);
+
+      expect(spyInstance).toHaveBeenCalled();
+    });
+  });
 });
