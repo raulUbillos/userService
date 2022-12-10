@@ -51,4 +51,21 @@ export class UserService {
       username: user[0].username,
     };
   }
+
+  async userByUsername(username: string): Promise<UserOutput> {
+    const user = await this.usersRepository.findBy({
+      username,
+    });
+
+    if (user.length === 0) {
+      throw new GraphQLError('USER_NOT_FOUND');
+    }
+
+    return {
+      email: user[0].email,
+      password: user[0].password,
+      personalData: user[0].personalData,
+      username: user[0].username,
+    };
+  }
 }

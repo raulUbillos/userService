@@ -14,6 +14,9 @@ const MockUserService = {
   userById: jest.fn(async (id: string): Promise<UserOutput> => {
     return {};
   }),
+  userByUsername: jest.fn(async (username: string): Promise<UserOutput> => {
+    return {};
+  }),
 };
 
 export default MockUserService;

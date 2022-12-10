@@ -21,9 +21,9 @@ export class UserResolver {
   }
 
   @Query(() => UserOutput)
-  userByUsername(@Args('username') username: string): UserOutput {
-    return {
-      username,
-    };
+  async userByUsername(
+    @Args('username') username: string,
+  ): Promise<UserOutput> {
+    return await this.userService.userByUsername(username);
   }
 }
