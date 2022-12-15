@@ -36,36 +36,36 @@ export class UserService {
   }
 
   async userById(id: string): Promise<UserOutput> {
-    const user = await this.usersRepository.findBy({
+    const user = await this.usersRepository.findOneBy({
       id,
     });
 
-    if (user.length === 0) {
+    if (!Boolean(user)) {
       throw new GraphQLError('USER_NOT_FOUND');
     }
 
     return {
-      email: user[0].email,
-      password: user[0].password,
-      personalData: user[0].personalData,
-      username: user[0].username,
+      email: user.email,
+      password: user.password,
+      personalData: user.personalData,
+      username: user.username,
     };
   }
 
   async userByUsername(username: string): Promise<UserOutput> {
-    const user = await this.usersRepository.findBy({
+    const user = await this.usersRepository.findOneBy({
       username,
     });
 
-    if (user.length === 0) {
+    if (!Boolean(user)) {
       throw new GraphQLError('USER_NOT_FOUND');
     }
 
     return {
-      email: user[0].email,
-      password: user[0].password,
-      personalData: user[0].personalData,
-      username: user[0].username,
+      email: user.email,
+      password: user.password,
+      personalData: user.personalData,
+      username: user.username,
     };
   }
 }

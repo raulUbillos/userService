@@ -1,19 +1,21 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Roles {
-  @PrimaryColumn({
-    type: 'uuid',
+  @PrimaryGeneratedColumn('uuid', {
+    name: 'id',
   })
   id: string;
 
   @Column({
     type: 'varchar',
+    unique: true,
   })
   name: string;
 
   @Column({
-    type: 'json',
+    type: 'text',
+    array: true,
   })
   permisions: any;
 }

@@ -1,12 +1,10 @@
 import { Test } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { validate } from 'class-validator';
 import { User } from 'Database/entities/user.model';
-import { GraphQLError } from 'graphql';
 import UserInput from 'User/types/UserInput.model';
 import { UserResolver } from '../user.resolver';
 import { UserService } from '../user.service';
-import MockUserService from './mock/mockService';
+import MockUserService from './mock/mockUserService';
 import MockUserRepository from './mock/mockUserRepository';
 
 describe('UserResolver', () => {

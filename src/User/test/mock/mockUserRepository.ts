@@ -8,17 +8,15 @@ const MockUserRepository = {
       generatedMaps: [],
     };
   }),
-  findBy: jest.fn(async (where: FindOptionsWhere<User>): Promise<User[]> => {
-    return [
-      {
-        email: '',
-        id: '',
-        isGoogleAuthenticated: false,
-        password: '',
-        username: '',
-        calendarId: '',
-      },
-    ];
+  findOneBy: jest.fn(async (where: FindOptionsWhere<User>): Promise<User> => {
+    return {
+      email: '',
+      id: '',
+      isGoogleAuthenticated: false,
+      password: '',
+      username: '',
+      calendarId: '',
+    };
   }),
 };
 

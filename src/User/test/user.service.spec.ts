@@ -47,9 +47,9 @@ describe('UserService', () => {
 
   describe('userById', () => {
     it('check that, if not user found, it threw the USER_NOT_FOUND error', async () => {
-      const spyInstance = jest.spyOn(userRepository, 'findBy');
-      MockUserRepository.findBy.mockImplementationOnce(async (where) => {
-        return [];
+      const spyInstance = jest.spyOn(userRepository, 'findOneBy');
+      MockUserRepository.findOneBy.mockImplementationOnce(async (where) => {
+        return null;
       });
       const ID = '';
       const userById = userService.userById(ID);
@@ -60,7 +60,7 @@ describe('UserService', () => {
       expect(spyInstance).toHaveBeenCalled();
     });
     it('search for the user on the DB', async () => {
-      const spyInstance = jest.spyOn(userRepository, 'findBy');
+      const spyInstance = jest.spyOn(userRepository, 'findOneBy');
       const ID = '';
       const userById = userService.userById(ID);
       expect(spyInstance).toHaveBeenCalled();
@@ -70,16 +70,16 @@ describe('UserService', () => {
 
   describe('userByUsername', () => {
     it('search for the user on the DB', async () => {
-      const spyInstance = jest.spyOn(userRepository, 'findBy');
+      const spyInstance = jest.spyOn(userRepository, 'findOneBy');
       const USERNAME = '';
       const userByUsername = userService.userByUsername(USERNAME);
       expect(spyInstance).toHaveBeenCalled();
       await expect(userByUsername).resolves.not.toBeFalsy();
     });
     it('check that, if not user found, it threw the USER_NOT_FOUND error', async () => {
-      const spyInstance = jest.spyOn(userRepository, 'findBy');
-      MockUserRepository.findBy.mockImplementationOnce(async (where) => {
-        return [];
+      const spyInstance = jest.spyOn(userRepository, 'findOneBy');
+      MockUserRepository.findOneBy.mockImplementationOnce(async (where) => {
+        return null;
       });
       const USERNAME = '';
       const userByUsername = userService.userByUsername(USERNAME);
