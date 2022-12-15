@@ -11,7 +11,6 @@ export class UserInputErrorFilter implements GqlExceptionFilter {
   catch(exception: BadRequestException, host: ArgumentsHost) {
     const gqlHost = GqlArgumentsHost.create(host);
     const response = exception.getResponse();
-    console.log(response);
     if (response instanceof Object) {
       const formattedResponse: Record<string, any> = response;
       throw new GraphQLError(formattedResponse.message);
